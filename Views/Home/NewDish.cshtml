@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Dish
+
+<div class="container text-center mt-5">
+    <h3>Add a Dish!</h3>
+    <div class="d-flex justify-content-start mb-2">
+        <a href="/" class="btn btn-primary btn-outline-dark text-white">Home</a>
+    </div>
+    <form action="/dish/add" method="post">
+        <div class="row gap-3">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="DishName" class="form-label">Name of Dish:</label>
+                    <input asp-for="DishName" class="form-control">
+                </div>
+                <span asp-validation-for="DishName" class="text-danger"></span>
+                <div class="form-group">
+                    <label for="Calories" class="form-label">Calories:</label>
+                    <input asp-for="Calories" type="number" min="0" class="form-control">
+                </div>
+                <span asp-validation-for="Calories" class="text-danger"></span>
+                <div class="form-group">
+                    <label for="Description" class="form-label">Description:</label>
+                    <input asp-for="Description" class="form-control" min="0">
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">Chef:</label>
+                    <select asp-for="ChefID" class="form-control">
+                        <option selected disabled hidden>Please Select One</option>
+                        @foreach(var c in ViewBag.AllChefs)
+                        {
+                            <option value="@c.ChefID">@c.FirstName @c.LastName</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="ChefID" class="text-danger"></span>
+                <div class="form-group">
+                    <label for="Tastiness" class="form-label">Tastiness:</label>
+                    <select asp-for="Tastiness" class="form-control">
+                        <option value="" selected disabled hidden>Please Select One</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Tastiness" class="text-danger"></span>
+                <div>
+                    <input type="submit" value="Add Dish" class="btn btn-success btn-outline-dark text-white">
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+            

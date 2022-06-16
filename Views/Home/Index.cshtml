@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5">
+    <div class="d-flex w-100 align-items-center justify-content-center">
+        <h3 class="m-auto">Chefs| <a href="/dishes">Dishes</a></h3>
+        <a href="/new" class="btn btn-info btn-outline-dark text-white">Add a Chef</a>
+    </div>
+    <div class="mt-2 mb-2">
+        <h4>Check out our roster of Chefs!</h4>
+        <hr class="bg-dark">
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th># of Dishes</th>
+        </tr>
+            @foreach(Chef c in @ViewBag.AllChefs)
+                {
+                    <tr>
+                        <td>@c.FirstName @c.LastName</td>
+                        <td>@(DateTime.Now.Year - c.DateOfBirth.Year)</td>
+                        <td>@c.CreatedDishes.Count()</td>
+                    </tr>
+                }
+    </table>
+</div>
